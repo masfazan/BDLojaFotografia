@@ -24,7 +24,7 @@ CPF varchar(11) not null,
 DataNascimento date not null,
 Sexo char (1)not null,
 constraint pkClientePF primary key (CodClientePF),
-foreign key fkEndClientePF (CodEndPF) references Endereco(CodEnd) 
+constraint fkEndClientePF foreign key (CodEndPF) references Endereco(CodEnd) 
 );
 --Tabela Pessoa Jurídica
 create table ClientePessoaJuridica (
@@ -40,7 +40,7 @@ CNPJ varchar(14) not null,
 InscricaoEstadual varchar(15) not null,
 NomeResponsavel varchar(100) not null,
 constraint pkClientePJ primary key (CodClientePJ),
-foreign key fkEndClientePJ (CodEndPJ) references Endereco(CodEnd) 
+constraint fkEndClientePJ foreign key (CodEndPJ) references Endereco(CodEnd)
 );
 --Tabela Funcionário
 create table Funcionario (
@@ -54,7 +54,7 @@ Contato varchar (15) not null,
 Funcao varchar (20) not null,
 Departamento varchar (20) not null,
 constraint pkCodFunc primary key (CodFunc),
-foreign key fkEndFunc (CodEndFunc) references Endereco(CodEnd) 
+constraint fkEndFunc foreign key (CodEndFunc) references Endereco(CodEnd)  
 );
 --Tabela Produto
 create table Produto (
@@ -77,9 +77,9 @@ CodVFunc int not null,
 CodVClientePF int,
 CodVClientePJ int,
 constraint pkNumVenda primary key (NumVenda),
-foreign key fkVFunc (CodVFunc) references Funcionario(CodFunc),
-foreign key fkVClientePF (CodVClientePF) references ClientePessoaFisica(CodClientePF),
-foreign key fkVClientePJ (CodVClientePJ) references ClientePessoaJuridica(CodVClientePJ)
+constraint fkVFunc foreign key (CodVFunc) references Funcionario(CodFunc),
+constraint fkVClientePF foreign key (CodVClientePF) references ClientePessoaFisica(CodClientePF),
+constraint fkVClientePJ foreign key (CodVClientePJ) references ClientePessoaJuridica(CodClientePJ)
 );
 --Tabela Item Venda
 create table ItemVenda (
@@ -88,8 +88,8 @@ CodProdIV int not null,
 Quantidade float not null,
 TotalItem float not null,
 constraint pkNumItemVenda primary key (NumItemVenda, CodProdIV),
-foreign key fkNumItemVenda (NumItemVenda) references Venda(NumVenda),
-foreign key fkCodProdIV (CodProdIV) references Produto(CodProd)
+constraint fkNumItemVenda foreign key (NumItemVenda) references Venda(NumVenda),
+constraint fkCodProdIV foreign key (CodProdIV) references Produto(CodProd)
 );
 insert into Endereco(CodEnd,Logradouro,Bairro,Cidade,Estado,CEP)
 values(1,'Rua 1','Centro','Araraquara','São Paulo','14800001');
